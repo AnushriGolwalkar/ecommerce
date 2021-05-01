@@ -1,0 +1,101 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Banner;
+use App\Category;
+use App\Product;
+use App\Cart;
+use Session;
+use DB;
+use Auth;
+use App\User;
+
+
+class FrontController extends Controller
+{
+    public function index()
+    {
+        $banner=Banner::all();
+        $category=Category::all();
+        $product=Product::all();
+        
+        
+        return view('Front.index',compact('banner','product','category'));
+    }
+    public function productdetail($id)
+    {
+        $product=Product::find($id);
+
+        return view('Front.productdetail',compact('product'));
+    }
+    public function addtocart(Request$a)
+    {
+       
+        //print_r($a->all());
+       $session_id=Session::getId();
+       $cart=new Cart;
+       $cart->product_id=$a->id;
+       $cart->product_name=$a->product_name;
+       $cart->product_price=$a->product_price;
+       $cart->product_image=$a->product_image;
+       $cart->product_quantity=$a->product_quantity;
+       $cart->session_id=$session_id;
+
+       $cart->save();
+       if($cart){
+       return redirect('cart');
+
+       }
+    }
+    public function cart()
+    
+    {
+
+
+        if(Auth::check()){
+            $useremail=Auth::user()->email;
+            $data=Cart::where('useremail',$useremail)->get();
+            $d=$data;
+            return view('Front.cart',compact('data','d'));
+
+
+
+        }
+        else{
+            $session_id=Session::getId();
+            $data=Cart::where(['session_id'=> $session_id])->get();
+            $d=$data;   
+        
+         return view('Front.cart',compact('data','d'));
+
+        }
+    
+    }
+
+
+    public function delcartitem($id)
+    {
+        $data=Cart::find($id);
+        $data->delete();
+        if($data)
+        {
+            return redirect('cart')->with('message','item deleted from the cart');
+        }
+    }
+
+    public function updatequantity($id=null,$product_quantity=null){
+       // print_r($id);
+        DB::table('carts')->where('id',$id)->increment('product_quantity');
+        return redirect('cart')->with('message','Product quantity updated');
+    }
+    public function checkout()
+    {
+        $session_id=Session::getId();
+        $d=Cart::where(['session_id'=> $session_id])->get();  
+        
+        return view('Front.checkout',compact('d'));
+    }
+
+}
