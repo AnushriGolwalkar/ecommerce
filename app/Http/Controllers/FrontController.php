@@ -160,6 +160,7 @@ class FrontController extends Controller
        }
     }
 
+
     public function orderconfirm()
     {
         $useremail=Auth::user()->email;
@@ -171,7 +172,11 @@ class FrontController extends Controller
 
     public function myaccount()
     {
-        return view ('Front.myaccount');
+        $op=Orderproduct::all();
+        $d=Orderproduct::all();
+        $pay=Order::all();
+        $add=Order::all();
+        return view ('Front.myaccount',compact('op','d','pay','add'));
     }
 
 }

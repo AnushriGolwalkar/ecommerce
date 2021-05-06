@@ -64,7 +64,7 @@ Route::get('/Banner/delete{id}','BannerController@delete');
 
 //Front
 
-Route::get('/f','FrontController@index');
+Route::get('index','FrontController@index');
 Route::get('Front/productdetail/{id}','FrontController@productdetail');
 Route::post('addtocart','FrontController@addtocart');
 Route::get('cart','FrontController@cart');
@@ -88,6 +88,10 @@ Route::post('loginsave','UserController@loginsave');
 
 Route::get('user/register', 'UserController@register');
 Route::post('regsave', 'UserController@regsave');
+
+//Order display to Admin
+
+Route::get('Order/display','OrderController@display');
     
 
 // Auth::routes();

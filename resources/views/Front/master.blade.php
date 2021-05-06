@@ -66,13 +66,13 @@
         </div>
         <nav class="offcanvas-menu">
             <ul>
-                <li><a href="#"><span class="menu-text">Home</span></a>
-                    <ul class="offcanvas-submenu">
-                        <li><a href="index.html">Home 1</a></li>
+                <li><a href="{{url('index')}}"><span class="menu-text">Home</span></a>
+                    {{-- <ul class="offcanvas-submenu">
+                        <li><a href="{{url('index')}}">Home </a></li>
                         <li><a href="index-2.html">Home 2</a></li>
                         <li><a href="index-3.html">Home 3</a></li>
                         <li><a href="index-4.html">Home 4</a></li>
-                    </ul>
+                    </ul> --}}
 
                 </li>
                 <li><a href="#"><span class="menu-text">Shop</span></a>
@@ -282,7 +282,7 @@
                     <nav class="header-bottom">
                         <ul class="main-menu d-flex">
                             <li class="active ml-0">
-                                <a href="#" class="pl-0">Home </a>
+                                <a href="{{url('index')}}" class="pl-0">Home </a>
                                 <ul class="sub-menu">
                                     {{-- <li><a href="index.html">Home </a></li> --}}
                                     
@@ -350,11 +350,11 @@
                                 <a href="#">Pages <i class="ion-ios-arrow-down"></i></a>
                                 <ul class="sub-menu">
                                     <li><a href="about-us.html">About Page</a></li>
-                                    <li><a href="{{url('addtocart')}}">Cart Page</a></li>
-                                    <li><a href="checkout.html">Checkout Page</a></li>
+                                    <li><a href="{{url('cart')}}">Cart Page</a></li>
+                                    <li><a href="{{url('checkout')}}">Checkout Page</a></li>
                                     <li><a href="compare.html">Compare Page</a></li>
                                     <li><a href="{{url('user/login')}}">Login &amp; Register Page</a></li>
-                                    <li><a href="myaccount.html">Account Page</a></li>
+                                    <li><a href="{{url('myaccount')}}">Account Page</a></li>
                                     <li><a href="wishlist.html">Wishlist Page</a></li>
                                 </ul>
                             </li>
@@ -412,8 +412,8 @@
                             
                             @else
                             
-                            <li><a href="{{url('front/login')}}">Login</a></li>
-                            <li><a href="{{url('front/register')}}">Register</a></li>
+                            <li><a href="{{url('user/login')}}">Login</a></li>
+                            <li><a href="{{url('user/register')}}">Register</a></li>
            
                             @endif
                             <li>
@@ -637,7 +637,7 @@
                 <div class="col-12 col-md-6 col-lg-4 mb-30">
                     <div class="footer-widget mx-w-400">
                         <div class="footer-logo mb-35">
-                            <a href="index.html">
+                            <a href="{{url('index')}}">
                                 <img src="{{url('Front/assets/img/logo/logo.png')}}" alt="footer logo" style="max-width:70%">
                             </a>
                         </div>

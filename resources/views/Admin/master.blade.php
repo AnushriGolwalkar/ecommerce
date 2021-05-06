@@ -7,7 +7,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>AdminSportyzone | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -163,7 +163,7 @@
     <a href="#" class="brand-link">
       <img src={{url("Admin/dist/img/AdminLTELogo.png")}} alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">AdminSportyzone</span>
     </a>
 
     <!-- Sidebar -->
@@ -171,10 +171,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src={{url("Admin/dist/img/user2-160x160.jpg")}} class="img-circle elevation-2" alt="User Image">
+          <img src={{url("Admin/dist/img/mypic.jpeg")}} class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Anushri Golwalkar</a>
         </div>
       </div>
 
@@ -192,7 +192,7 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+              <li class="nav-item  has-treeview menu-open">
                 <a href="Category/addcategory" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Category </p>
@@ -240,6 +240,12 @@
               <p>Manage Banner </p>
             </a>
         </li>
+        <li class="nav-item">
+          <a href="Order/display" class="nav-link active">
+            <i class="far fa-circle nav-icon"></i>
+            <p>View Orders</p>
+          </a>
+      </li>
             <li class="nav-item">
               <a href="Admin/logout" class="nav-link active">
                 <i class="far fa-circle nav-icon"></i>
@@ -253,11 +259,11 @@
     <!-- /.sidebar -->
   </aside>
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong>Copyright &copy; 2021<a href="">Sportyzone</a>.</strong>
     All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
+    {{-- <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.0.4
-    </div>
+    </div> --}}
   </footer>
 
   <!-- Control Sidebar -->

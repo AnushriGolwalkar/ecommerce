@@ -63,8 +63,10 @@
                             <h3>Dashboard</h3>
 
                             <div class="welcome mb-20">
-                                <p>Hello, <strong>Alex Tuntuni</strong> (If Not <strong>Tuntuni !</strong><a
-                                        href="login-register.html" class="logout"> Logout</a>)</p>
+                                @if(Auth::check())
+                                <p>Hello, <strong>{{Auth::user()->name}}</strong> (If Not {{Auth::user()->name}} <strong></strong><a
+                                        href="{{url('user/register')}}" class="logout"> Logout</a>)</p>
+                                @endif
                             </div>
 
                             <p class="mb-0">From your account dashboard. you can easily check &amp; view your
@@ -83,43 +85,32 @@
                                 <table class="table table-bordered">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th>No</th>
-                                            <th>Name</th>
-                                            <th>Date</th>
-                                            <th>Status</th>
-                                            <th>Total</th>
+                                            <th>id</th>
+                                            <th>Product Name</th>
+                                            <th>Product Price</th>
+                                            <th>Product image</th>
                                             <th>Action</th>
+                                            
                                         </tr>
                                     </thead>
 
                                     <tbody>
+                                       @foreach ($op as $op)
                                         <tr>
-                                            <td>1</td>
-                                            <td>Mostarizing Oil</td>
-                                            <td>Aug 22, 2018</td>
-                                            <td>Pending</td>
-                                            <td>$45</td>
-                                            <td><a href="shopping-cart.html" class="ht-btn black-btn">View</a>
+                                            <td>{{$op->id}}</td>
+                                            <td>{{$op->product_name}}</td>
+                                            <td>Rs.{{$op->product_price}}</td>
+                                            <td>
+                                                <img src="{{url('/upload/'.$op->product_image)}}" alt="img" value="" style="height: 150px; width:190px;">
+                                            </td>
+                                            <td>
+                                                
+                                                <a class="btn btn-info" href="{{url('Front/vieworder')}}" >View</a>
+                                                <a class="btn btn-danger" href="{{url('Front/delete')}}" >Delete</a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Katopeno Altuni</td>
-                                            <td>July 22, 2018</td>
-                                            <td>Approved</td>
-                                            <td>$100</td>
-                                            <td><a href="shopping-cart.html" class="ht-btn black-btn">View</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Murikhete Paris</td>
-                                            <td>June 12, 2017</td>
-                                            <td>On Hold</td>
-                                            <td>$99</td>
-                                            <td><a href="shopping-cart.html" class="ht-btn black-btn">View</a>
-                                            </td>
-                                        </tr>
+                                        @endforeach
+                                       
                                     </tbody>
                                 </table>
                             </div>
@@ -144,18 +135,15 @@
                                     </thead>
 
                                     <tbody>
+                                        @foreach($d as $d)
                                         <tr>
-                                            <td>Mostarizing Oil</td>
-                                            <td>Aug 22, 2018</td>
+                                            <td>{{$op->product_name}}</td>
+                                            <td>{{$d->created_at}}</td>
                                             <td>Yes</td>
                                             <td><a href="#" class="ht-btn black-btn">Download File</a></td>
                                         </tr>
-                                        <tr>
-                                            <td>Katopeno Altuni</td>
-                                            <td>Sep 12, 2018</td>
-                                            <td>Never</td>
-                                            <td><a href="#" class="ht-btn black-btn">Download File</a></td>
-                                        </tr>
+                                        @endforeach
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -167,8 +155,26 @@
                     <div class="tab-pane fade" id="payment-method" role="tabpanel">
                         <div class="myaccount-content">
                             <h3>Payment Method</h3>
+                            <table class="table table-bordered">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Payment method</th>
+                                </tr>
+                               
+                                </thead>
+                                <tbody>
+                                    @foreach ($pay as $pay)
+                                     <tr>
+                                        <td>{{$pay->name}}</td>
+                                        <td>{{$pay->payment_method}}</td>
+                                    </tr>
+                                     @endforeach
+                                    
+                                 </tbody>
+                            </table>
 
-                            <p class="saved-message">You Can't Saved Your Payment Method yet.</p>
+                            
                         </div>
                     </div>
                     <!-- Single Tab Content End -->
@@ -178,15 +184,36 @@
                         <div class="myaccount-content">
                             <h3>Billing Address</h3>
 
-                            <address>
-                                <p><strong>Alex Tuntuni</strong></p>
-                                <p>1355 Market St, Suite 900 <br>
-                                    San Francisco, CA 94103</p>
-                                <p>Mobile: (123) 456-7890</p>
-                            </address>
+                            
 
-                            <a href="#" class="ht-btn black-btn d-inline-block edit-address-btn"><i
-                                    class="fa fa-edit"></i>Edit Address</a>
+                            <table class="table table-bordered">
+                                <thead class="thead-light">
+                                   
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Address</th>
+                                        <th>Phone Number</th>
+                                        <th>Action</th>
+                                    </tr>
+                                   
+                               
+                                </thead>
+                                <tbody>
+                                    @foreach ($add as $add)
+                                    <tr>
+                                        <td>{{$add->name}}</td>
+                                        <td>{{$add->address}},{{$add->state}},{{$add->country}},{{$add->pincode}}</td>
+                                        <td>{{$add->phone}}</td>
+                                        <td>
+                                            <a type="button" href="">view</a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+
+                            {{-- <a href="#" class="ht-btn black-btn d-inline-block edit-address-btn"><i
+                                    class="fa fa-edit"></i>Edit Address</a> --}}
                         </div>
                     </div>
                     <!-- Single Tab Content End -->
